@@ -27,13 +27,45 @@
       </div>
       <div class="pick">
         <div class="hand paper">
-          <img src="./images/paper.png" alt="paper-icon" />
+          <img
+            src="./images/paper.png"
+            alt="paper-icon"
+            onclick="pickUserHandler('paper')"
+          />
         </div>
         <div class="hand scissors">
-          <img src="./images/scissors.png" alt="scissors-icon" />
+          <img
+            src="./images/scissors.png"
+            alt="scissors-icon"
+            onclick="pickUserHandler('scissors')"
+          />
         </div>
         <div class="hand rock">
-          <img src="./images/rock.png" alt="rock-icon" />
+          <img
+            src="./images/rock.png"
+            alt="rock-icon"
+            onclick="pickUserHandler('rock')"
+          />
+        </div>
+      </div>
+      <div class="match">
+        <div class="user-pick">
+          <h1>YOU PICKED</h1>
+          <div class="u-img-pod">
+            <img id="u-pick" src="./images/paper.png" />
+          </div>
+        </div>
+        <div class="referee">
+          <div class="decider">
+            <h1 class="who-won">YOU WIN</h1>
+            <div class="new-game">PLAY AGAIN</div>
+          </div>
+        </div>
+        <div class="cpu-pick">
+          <h1>THE HOUSE PICKED</h1>
+          <div class="cpu-img-pod">
+            <img id="cpu-pick" src="./images/scissors.png" />
+          </div>
         </div>
       </div>
     </main>

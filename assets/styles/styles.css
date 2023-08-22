@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Caprasimo', cursive;
+  font-family: 'Poppins', cursive;
 }
 
 main {
@@ -89,4 +89,64 @@ main {
 
 .pick .hand:hover {
   transform: translate3d(0px, -8px, 0px);
+}
+
+.match {
+  width: 900px;
+  display: none;
+  margin-top: 50px;
+}
+
+.match img {
+  width: 275px;
+  height: 275px;
+}
+
+.match > div {
+  flex: 1;
+}
+
+.match h1 {
+  color: #f3f3f3;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.match .u-img-pod {
+  display: flex;
+  justify-content: center;
+}
+
+.match .cpu-img-pod {
+  display: flex;
+  justify-content: center;
+}
+
+.referee {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.referee h1 {
+  font-size: 45px;
+}
+
+.new-game {
+  background-color: #f3f3f3;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #3b4262;
+  transition: all 0.15s;
+  text-align: center;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.new-game:hover {
+  background-color: bisque;
+  transform: translate3d(0px -2px 0px);
 }
