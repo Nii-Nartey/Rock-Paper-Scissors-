@@ -30,36 +30,73 @@ const cpuPickHandler = () => {
   return cpu;
 };
 
+//pulsing animation for winner
+const userWinner = () => {
+  const userWon = document.getElementById('u-pick');
+  const cpuWon = document.getElementById('cpu-pick');
+  if (cpuWon.classList.contains('visible')) {
+    cpuWon.classList.remove('visible');
+  }
+  userWon.classList.add('winner');
+};
+
+const cpuWinner = () => {
+  const cpuWon = document.getElementById('cpu-pick');
+  const userWon = document.getElementById('u-pick');
+  if (userWon.classList.contains('visible')) {
+    userWon.classList.remove('visible');
+  }
+  cpuWon.classList.add('winner');
+};
+const tie = () => {
+  const userWon = document.getElementById('u-pick');
+  const cpuWon = document.getElementById('cpu-pick');
+  userWon.classList.remove('winner');
+  cpuWon.classList.remove('winner');
+};
+
 const referee = (user, cpu) => {
   if (user == 'paper' && cpu == 'scissors') {
     decider('YOU LOSE');
+    setScore(scores - 1);
+    cpuWinner();
   }
   if (user == 'paper' && cpu == 'rock') {
     decider('YOU WIN');
     setScore(scores + 1);
+    userWinner();
   }
   if (user == 'paper' && cpu == 'paper') {
-    decider("It's a tie!");
+    decider("It's a tie");
+    tie();
   }
   if (user == 'rock' && cpu == 'scissors') {
-    decider('YOU WIN!');
+    decider('YOU WIN');
     setScore(scores + 1);
+    userWinner();
   }
   if (user == 'rock' && cpu == 'paper') {
-    decider('YOU LOSE!');
+    decider('YOU LOSE');
+    setScore(scores - 1);
+    cpuWinner();
   }
   if (user == 'rock' && cpu == 'rock') {
-    decider("It's a tie!");
+    decider("It's a tie");
+    tie();
   }
   if (user == 'scissors' && cpu == 'scissors') {
-    decider("It's a tie!");
+    decider("It's a tie");
+    tie();
   }
   if (user == 'scissors' && cpu == 'rock') {
-    decider('YOU LOSE!');
+    decider('YOU LOSE');
+    setScore(scores - 1);
+    cpuWinner();
   }
   if (user == 'scissors' && cpu == 'paper') {
-    decider('YOU WIN!');
+    decider('YOU WIN');
     setScore(scores + 1);
+    userWinner();
   }
 };
 const decider = (decide) => {
@@ -80,6 +117,7 @@ const resetGame = () => {
   hand.style.display = 'flex';
   let match = document.querySelector('.match');
   match.style.display = 'none';
+  tie();
 };
 
 const rulesHandler = () => {
