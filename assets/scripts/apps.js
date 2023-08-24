@@ -82,5 +82,26 @@ const resetGame = () => {
   match.style.display = 'none';
 };
 
+const rulesHandler = () => {
+  console.log('iwork');
+  const modalBg = document.querySelector('.modal-bg');
+  const modal = document.querySelector('.modal');
+  modalBg.style.display = 'block';
+  modal.style.display = 'block';
+};
+
+const closeModalHandler = () => {
+  const modalBg = document.querySelector('.modal-bg');
+  const modal = document.querySelector('.modal');
+  modalBg.style.display = 'none';
+  modal.style.display = 'none';
+};
+
 const newGame = document.querySelector('.new-game');
 newGame.addEventListener('click', resetGame);
+
+const rules = document.querySelector('.rules-btn');
+rules.addEventListener('click', rulesHandler);
+
+const close = document.querySelector('.close');
+close.addEventListener('click', closeModalHandler);
