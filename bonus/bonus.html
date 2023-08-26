@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="/bonus/bonus.css" />
+    <title>Rock, Paper, Scissors, Lizard, Spock</title>
+  </head>
+  <body>
+    <div class="flex-column main-container">
+      <!-- Title block -->
+      <section class="title-block flex-row">
+        <ul>
+          <li>Rock</li>
+          <li>Paper</li>
+          <li>Scissors</li>
+          <li>Lizard</li>
+          <li>Spock</li>
+        </ul>
+        <div class="score flex-column">
+          <div class="score-title">Score</div>
+          <div class="score-count">0</div>
+        </div>
+      </section>
+
+      <!-- User choice -->
+      <section class="user-choice">
+        <div class="game-card scissors">
+          <img src="/images/icon-scissors.svg" alt="" />
+        </div>
+        <div class="game-card paper">
+          <img src="/images/icon-paper.svg" alt="" />
+        </div>
+        <div class="game-card rock">
+          <img src="/images/icon-rock.svg" alt="" />
+        </div>
+        <div class="game-card lizard">
+          <img src="/images/icon-lizard.svg" alt="" />
+        </div>
+        <div class="game-card spock">
+          <img src="/images/icon-spock.svg" alt="" />
+        </div>
+      </section>
+
+      <div class="section picked flex-row hidden">
+        <div class="choice flex-column">
+          <p>You picked</p>
+          <div class="user-pick"></div>
+        </div>
+        <div class="result">
+          <div class="title">You lose</div>
+          <button>Play again</button>
+        </div>
+        <div class="choice flex-column">
+          <p>The house picked</p>
+          <div class="pc-pick"></div>
+        </div>
+      </div>
+
+      <button class="rules-btn">Rules</button>
+      <a href="/"><button class="bonus-btn">REGULAR</button></a>
+      <div class="modal-bg"></div>
+      <div class="modal">
+        <span class="close">
+          <img src="./icon-close.svg" alt="" />
+        </span>
+        <div class="title">Rules</div>
+        <div class="content">
+          <img src="./image-rules-bonus.svg" alt="" />
+        </div>
+      </div>
+    </div>
+    <script src="./bonus.js"></script>
+  </body>
+</html>

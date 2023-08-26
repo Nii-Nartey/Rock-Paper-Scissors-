@@ -192,7 +192,27 @@
     cursor: pointer;
   }
 
+  .bonus-btn {
+    position: absolute;
+    left: 100px;
+    bottom: 70px;
+    padding: 5px 25px;
+    border-radius: 8px;
+    border: 1px solid hsl(217, 16%, 45%);
+    color: #fff;
+    background: linear-gradient(to left, transparent 50%, #fff 50%);
+    background-size: 250% 100%;
+    background-position: right bottom;
+    transition: background-position 0.3s ease-out, color 0.3s ease-out;
+    cursor: pointer;
+  }
+
   .rules-btn:hover {
+    background-position: left bottom;
+    color: hsl(214, 47%, 23%);
+  }
+
+  .bonus-btn:hover {
     background-position: left bottom;
     color: hsl(214, 47%, 23%);
   }
@@ -241,20 +261,10 @@
     text-align: center;
   }
   #u-pick {
-    /*     position: absolute;
-    left: 25px;
-    top: 207px; */
-    /*     width: 203px;
-    height: 203px; */
     border-radius: 137.5px;
   }
 
   #cpu-pick {
-    /*     position: absolute;
-    right: 25px;
-    top: 207px; */
-    /*     width: 203px;
-    height: 203px; */
     border-radius: 137px;
   }
 }
@@ -327,6 +337,7 @@
     background-image: url('./triangle.svg');
     background-repeat: no-repeat;
     background-position: center;
+    margin-top: 60px;
   }
 
   .scissors img {
@@ -355,17 +366,32 @@
     background: rgba(0, 0, 0, 10%);
     cursor: pointer;
     position: absolute;
-    height: 40px;
     left: 0px;
     right: 0px;
     margin-left: auto;
     margin-right: auto;
     bottom: 58px;
     border-radius: 8px;
-    width: 128px;
+    height: 30px;
+    width: 120px;
     letter-spacing: 2.5px;
-    font-size: 17px;
-    font-weight: 600;
+  }
+
+  .bonus-btn {
+    border: 0.5px solid #fff;
+    height: 30px;
+    width: 90px;
+    color: #fff;
+    background: rgba(0, 0, 0, 10%);
+    cursor: pointer;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 8px;
+    border-radius: 8px;
+    letter-spacing: 2.5px;
   }
 
   .modal {
