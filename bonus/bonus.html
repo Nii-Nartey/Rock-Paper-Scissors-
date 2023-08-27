@@ -3,79 +3,102 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
       href="./images/favicon-32x32.png"
     />
-    <link rel="stylesheet" href="/bonus/bonus.css" />
-    <title>Rock, Paper, Scissors, Lizard, Spock</title>
+    <link rel="stylesheet" href="./bonus.css" />
+    <script src="./bonus.js" defer></script>
+
+    <title>Frontend Mentor | Rock, Paper, Scissors</title>
   </head>
   <body>
-    <div class="flex-column main-container">
-      <!-- Title block -->
-      <section class="title-block flex-row">
-        <ul>
-          <li>Rock</li>
-          <li>Paper</li>
-          <li>Scissors</li>
-          <li>Lizard</li>
-          <li>Spock</li>
-        </ul>
-        <div class="score flex-column">
-          <div class="score-title">Score</div>
-          <div class="score-count">0</div>
+    <main>
+      <div class="rps">
+        <img src="/images/logo-bonus.svg" alt="" />
+        <div class="score-div">
+          <p>SCORE</p>
+          <h1>0</h1>
         </div>
-      </section>
+      </div>
 
       <!-- User choice -->
-      <section class="user-choice">
-        <div class="game-card scissors">
-          <img src="/images/icon-scissors.svg" alt="" />
+      <div class="pick">
+        <div class="hand paper">
+          <img
+            src="/images/paper.png"
+            alt="paper-icon"
+            onclick="pickUserHandler('paper')"
+          />
         </div>
-        <div class="game-card paper">
-          <img src="/images/icon-paper.svg" alt="" />
+        <div class="hand scissors">
+          <img
+            src="/images/scissors.png"
+            alt="scissors-icon"
+            onclick="pickUserHandler('scissors')"
+          />
         </div>
-        <div class="game-card rock">
-          <img src="/images/icon-rock.svg" alt="" />
+        <div class="hand rock">
+          <img
+            src="/images/rock.png"
+            alt="rock-icon"
+            onclick="pickUserHandler('rock')"
+          />
         </div>
-        <div class="game-card lizard">
-          <img src="/images/icon-lizard.svg" alt="" />
+        <div id="sp" class="hand spock">
+          <img
+            src="/images/spock.png"
+            alt="spock-icon"
+            onclick="pickUserHandler('spock')"
+          />
         </div>
-        <div class="game-card spock">
-          <img src="/images/icon-spock.svg" alt="" />
-        </div>
-      </section>
-
-      <div class="section picked flex-row hidden">
-        <div class="choice flex-column">
-          <p>You picked</p>
-          <div class="user-pick"></div>
-        </div>
-        <div class="result">
-          <div class="title">You lose</div>
-          <button>Play again</button>
-        </div>
-        <div class="choice flex-column">
-          <p>The house picked</p>
-          <div class="pc-pick"></div>
+        <div class="hand lizard">
+          <img
+            src="/images/lizard.png"
+            alt="lizard-icon"
+            onclick="pickUserHandler('lizard')"
+          />
         </div>
       </div>
-
-      <button class="rules-btn">Rules</button>
-      <a href="/"><button class="bonus-btn">REGULAR</button></a>
-      <div class="modal-bg"></div>
-      <div class="modal">
-        <span class="close">
-          <img src="./icon-close.svg" alt="" />
-        </span>
-        <div class="title">Rules</div>
-        <div class="content">
-          <img src="./image-rules-bonus.svg" alt="" />
+      <div class="match">
+        <div class="user-pick">
+          <h1>YOU PICKED</h1>
+          <div class="u-img-pod">
+            <img id="u-pick" src="/images/paper.png" />
+          </div>
         </div>
+        <div class="referee">
+          <div class="decider">
+            <h1 class="who-won">YOU WIN</h1>
+            <div class="new-game">PLAY AGAIN</div>
+          </div>
+        </div>
+        <div class="cpu-pick">
+          <h1>THE HOUSE PICKED</h1>
+          <div class="cpu-img-pod">
+            <img id="cpu-pick" src="/images/scissors.png" />
+          </div>
+        </div>
+      </div>
+    </main>
+    <button class="rules-btn">RULES</button>
+    <a href="/"><button class="bonus-btn">REGULAR</button></a>
+    <div class="modal-bg"></div>
+    <div class="modal">
+      <span class="close"><img src="/images/icon-close.svg" /></span>
+      <div class="title">RULES</div>
+      <div class="content">
+        <img src="./image-rules-bonus.svg" alt="" />
       </div>
     </div>
-    <script src="./bonus.js"></script>
   </body>
 </html>

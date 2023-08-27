@@ -1,139 +1,225 @@
-function game() {
-  const actions = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
-  const userWinResults = [
-    'scissorspaper',
-    'paperrock',
-    'rocklizard',
-    'lizardspock',
-    'spockscissors',
-    'rockscissors',
-    'scissorslizard',
-    'lizardpaper',
-    'paperspock',
-    'spockrock',
-  ];
-  let userChoice = '';
-  let compChoice = '';
-  const userChoiceElement = document.querySelector('.user-choice');
-  const pickedElement = document.querySelector('.picked');
-  const userPickElement = document.querySelector('.user-pick');
-  const pcPickElement = document.querySelector('.pc-pick');
-  const resultElement = document.querySelector('.result');
-  const resultTitleElement = resultElement.querySelector('.title');
-  const scoreCountElement = document.querySelector('.score-count');
+//objects to hold image values
+const rps = {
+  paper: '/images/paper.png',
+  rock: '/images/rock.png',
+  scissors: '/images/scissors.png',
+  spock: '/images/spock.png',
+  lizard: '/images/lizard.png',
+};
 
-  let currentScore = null;
+let scores = 0;
 
-  window.addEventListener('load', () => {
-    retrieveScoreFromLocalStorage();
+//user Selection handler
+const pickUserHandler = (pickHand) => {
+  let hand = document.querySelector('.pick');
+  hand.style.display = 'none';
+  let match = document.querySelector('.match');
+  match.style.display = 'flex';
 
-    document.querySelectorAll('.user-choice .game-card').forEach((card) => {
-      card.addEventListener('click', (ev) => {
-        userChoice = getUserChoice(ev.target);
-        compChoice = getComputerChoice();
+  //setting user pick
+  const userPick = document.getElementById('u-pick');
+  userPick.src = rps[pickHand];
+  let cpu = cpuPickHandler();
+  referee(pickHand, cpu);
+};
 
-        startGame();
-      });
-    });
+//Cpu selection handler
+const cpuPickHandler = () => {
+  let picks = ['rock', 'paper', 'scissors', 'spock', 'lizard'];
+  let cpu = picks[Math.floor(Math.random() * picks.length)];
+  const cpuPick = document.getElementById('cpu-pick');
+  cpuPick.src = rps[cpu];
+  return cpu;
+};
 
-    resultElement.querySelector('button').addEventListener('click', tryAgain);
-  });
-
-  function startGame() {
-    calculateWinner(userChoice, compChoice);
-    userChoiceElement.classList.add('hidden');
-    pickedElement.classList.remove('hidden');
-    clearResultBeforeAppend();
-    buildChoiceElement(true, userChoice);
-    buildChoiceElement(false, compChoice);
+//pulsing animation for winner
+const userWinner = () => {
+  const userWon = document.getElementById('u-pick');
+  const cpuWon = document.getElementById('cpu-pick');
+  if (cpuWon.classList.contains('visible')) {
+    cpuWon.classList.remove('visible');
   }
+  userWon.classList.add('winner');
+};
 
-  function getUserChoice(target) {
-    if (target.nodeName === 'IMG') {
-      return target.parentElement.classList[1];
-    }
-    return target.classList[1];
+const cpuWinner = () => {
+  const cpuWon = document.getElementById('cpu-pick');
+  const userWon = document.getElementById('u-pick');
+  if (userWon.classList.contains('visible')) {
+    userWon.classList.remove('visible');
   }
+  cpuWon.classList.add('winner');
+};
+const tie = () => {
+  const userWon = document.getElementById('u-pick');
+  const cpuWon = document.getElementById('cpu-pick');
+  userWon.classList.remove('winner');
+  cpuWon.classList.remove('winner');
+};
 
-  function getComputerChoice() {
-    return actions[Math.floor(Math.random() * 5)];
+const referee = (user, cpu) => {
+  if (user == 'paper' && cpu == 'scissors') {
+    decider('YOU LOSE');
+    setScore(scores - 1);
+    cpuWinner();
   }
-
-  function calculateWinner(user, comp) {
-    if (user === comp) {
-      resultTitleElement.innerText = 'Tie';
-    } else if (getUserWinsStatus(user + comp)) {
-      resultTitleElement.innerText = 'You win';
-      calculateScore(1);
-    } else {
-      resultTitleElement.innerText = 'You lose';
-      calculateScore(-1);
-    }
+  if (user == 'paper' && cpu == 'rock') {
+    decider('YOU WIN');
+    setScore(scores + 1);
+    userWinner();
   }
-
-  function getUserWinsStatus(result) {
-    return userWinResults.some((winStr) => winStr === result);
+  if (user == 'paper' && cpu == 'paper') {
+    decider("It's a tie");
+    tie();
   }
-
-  function buildChoiceElement(isItUserElement, className) {
-    const el = document.createElement('div');
-    el.classList = [`game-card ${className}`];
-    el.innerHTML = `<img src="/images/icon-${className}.svg" alt="${className}">`;
-    if (isItUserElement) {
-      userPickElement.append(el);
-    } else {
-      pcPickElement.append(el);
-    }
+  if (user == 'paper' && cpu == 'spock') {
+    decider('YOU WIN');
+    setScore(scores + 1);
+    userWinner();
   }
-
-  function tryAgain() {
-    userChoiceElement.classList.remove('hidden');
-    pickedElement.classList.add('hidden');
+  if (user == 'paper' && cpu == 'lizard') {
+    decider('YOU LOSE');
+    setScore(scores - 1);
+    cpuWinner();
   }
-
-  function clearResultBeforeAppend() {
-    userPickElement.innerHTML = '';
-    pcPickElement.innerHTML = '';
+  if (user == 'rock' && cpu == 'scissors') {
+    decider('YOU WIN');
+    setScore(scores + 1);
+    userWinner();
   }
-
-  function calculateScore(roundResult) {
-    currentScore += roundResult;
-    updateScoreBoard();
+  if (user == 'rock' && cpu == 'paper') {
+    decider('YOU LOSE');
+    setScore(scores - 1);
+    cpuWinner();
   }
-
-  function retrieveScoreFromLocalStorage() {
-    const score = +window.localStorage.getItem('gameScore') || 0;
-    currentScore = score;
-    updateScoreBoard();
+  if (user == 'rock' && cpu == 'rock') {
+    decider("It's a tie");
+    tie();
   }
-
-  function updateScoreBoard() {
-    scoreCountElement.innerText = currentScore;
-    /*  window.localStorage.setItem('gameScore', currentScore); */
+  if (user == 'rock' && cpu == 'spock') {
+    decider('YOU LOSE');
+    setScore(scores - 1);
+    cpuWinner();
   }
+  if (user == 'rock' && cpu == 'lizard') {
+    decider('YOU WIN');
+    setScore(scores + 1);
+    userWinner();
+  }
+  if (user == 'scissors' && cpu == 'scissors') {
+    decider("It's a tie");
+    tie();
+  }
+  if (user == 'scissors' && cpu == 'rock') {
+    decider('YOU LOSE');
+    setScore(scores - 1);
+    cpuWinner();
+  }
+  if (user == 'scissors' && cpu == 'paper') {
+    decider('YOU WIN');
+    setScore(scores + 1);
+    userWinner();
+  }
+  if (user == 'scissors' && cpu == 'spock') {
+    decider('YOU LOSE');
+    setScore(scores - 1);
+    cpuWinner();
+  }
+  if (user == 'scissors' && cpu == 'lizard') {
+    decider('YOU WIN');
+    setScore(scores + 1);
+    userWinner();
+  }
+  if (user == 'spock' && cpu == 'scissors') {
+    decider('YOU WIN');
+    setScore(scores + 1);
+    userWinner();
+  }
+  if (user == 'spock' && cpu == 'paper') {
+    decider('YOU LOSE');
+    setScore(scores - 1);
+    cpuWinner();
+  }
+  if (user == 'spock' && cpu == 'rock') {
+    decider('YOU WIN');
+    setScore(scores + 1);
+    userWinner();
+  }
+  if (user == 'spock' && cpu == 'lizard') {
+    decider('YOU LOSE');
+    setScore(scores - 1);
+    cpuWinner();
+  }
+  if (user == 'spock' && cpu == 'spock') {
+    decider("It's a tie");
+    tie();
+  }
+  if (user == 'lizard' && cpu == 'scissors') {
+    decider('YOU WIN');
+    setScore(scores + 1);
+    userWinner();
+  }
+  if (user == 'lizard' && cpu == 'rock') {
+    decider('YOU LOSE');
+    setScore(scores - 1);
+    cpuWinner();
+  }
+  if (user == 'lizard' && cpu == 'paper') {
+    decider('YOU WIN');
+    setScore(scores + 1);
+    userWinner();
+  }
+  if (user == 'lizard' && cpu == 'spock') {
+    decider('YOU WIN');
+    setScore(scores + 1);
+    userWinner();
+  }
+  if (user == 'lizard' && cpu == 'lizard') {
+    decider("It's a tie");
+    tie();
+  }
+};
+const decider = (decide) => {
+  let decision = document.querySelector('.who-won');
+  decision.innerText = decide;
+  console.log(decide);
+};
 
-  //work with modal
-  const rulesBtn = document.querySelector('.rules-btn');
+const setScore = (score) => {
+  scores = score;
+  const scoreBoard = document.querySelector('.score-div h1');
+  scoreBoard.innerText = score;
+  console.log(scoreBoard);
+};
+
+const resetGame = () => {
+  let hand = document.querySelector('.pick');
+  hand.style.display = 'flex';
+  let match = document.querySelector('.match');
+  match.style.display = 'none';
+  tie();
+};
+
+const rulesHandler = () => {
+  console.log('iwork');
   const modalBg = document.querySelector('.modal-bg');
   const modal = document.querySelector('.modal');
+  modalBg.style.display = 'block';
+  modal.style.display = 'block';
+};
 
-  rulesBtn.addEventListener('click', () => {
-    modal.classList.add('active');
-    modalBg.classList.add('active');
-  });
+const closeModalHandler = () => {
+  const modalBg = document.querySelector('.modal-bg');
+  const modal = document.querySelector('.modal');
+  modalBg.style.display = 'none';
+  modal.style.display = 'none';
+};
 
-  modalBg.addEventListener('click', (event) => {
-    if (event.target === modalBg) {
-      hideModal();
-    }
-  });
+const newGame = document.querySelector('.new-game');
+newGame.addEventListener('click', resetGame);
 
-  document.querySelector('.close').addEventListener('click', hideModal);
+const rules = document.querySelector('.rules-btn');
+rules.addEventListener('click', rulesHandler);
 
-  function hideModal() {
-    modal.classList.remove('active');
-    modalBg.classList.remove('active');
-  }
-}
-
-game();
+const close = document.querySelector('.close');
+close.addEventListener('click', closeModalHandler);
