@@ -1,21 +1,29 @@
 //objects to hold image values
-const rps = {
-  paper: './images/paper.png',
-  rock: './images/rock.png',
-  scissors: './images/scissors.png',
+
+type Rps = {
+  [key: string]: string;
+  paper: string;
+  rock: string;
+  scissors: string;
+};
+
+const rps: Rps = {
+  paper: 'assets/styles/images/paper.png',
+  rock: 'assets/styles/images/rock.png',
+  scissors: 'assets/styles/images/scissors.png',
 };
 
 let scores = 0;
 
 //user Selection handler
-const pickUserHandler = (pickHand) => {
-  let hand = document.querySelector('.pick');
+const pickUserHandler = (pickHand: string) => {
+  let hand = document.querySelector('.pick') as HTMLElement;
   hand.style.display = 'none';
-  let match = document.querySelector('.match');
+  let match = document.querySelector('.match') as HTMLElement;
   match.style.display = 'flex';
 
   //setting user pick
-  const userPick = document.getElementById('u-pick');
+  const userPick = document.getElementById('u-pick') as HTMLImageElement;
   userPick.src = rps[pickHand];
   let cpu = cpuPickHandler();
   referee(pickHand, cpu);
@@ -25,37 +33,38 @@ const pickUserHandler = (pickHand) => {
 const cpuPickHandler = () => {
   let picks = ['rock', 'paper', 'scissors'];
   let cpu = picks[Math.floor(Math.random() * picks.length)];
-  const cpuPick = document.getElementById('cpu-pick');
+  const cpuPick = document.getElementById('cpu-pick') as HTMLImageElement;
   cpuPick.src = rps[cpu];
   return cpu;
 };
 
 //pulsing animation for winner
 const userWinner = () => {
-  const userWon = document.getElementById('u-pick');
-  const cpuWon = document.getElementById('cpu-pick');
-  if (cpuWon.classList.contains('visible')) {
-    cpuWon.classList.remove('visible');
+  const userWon = document.getElementById('u-pick') as HTMLElement;
+  const cpuWon = document.getElementById('cpu-pick') as HTMLElement;
+  if (cpuWon.classList.contains('winner')) {
+    cpuWon.classList.remove('winner');
   }
   userWon.classList.add('winner');
 };
 
 const cpuWinner = () => {
-  const cpuWon = document.getElementById('cpu-pick');
-  const userWon = document.getElementById('u-pick');
-  if (userWon.classList.contains('visible')) {
-    userWon.classList.remove('visible');
+  const cpuWon = document.getElementById('cpu-pick') as HTMLElement;
+  const userWon = document.getElementById('u-pick') as HTMLElement;
+  if (userWon.classList.contains('winner')) {
+    userWon.classList.remove('winner');
   }
   cpuWon.classList.add('winner');
 };
 const tie = () => {
-  const userWon = document.getElementById('u-pick');
-  const cpuWon = document.getElementById('cpu-pick');
+  const userWon = document.getElementById('u-pick') as HTMLElement;
+  const cpuWon = document.getElementById('cpu-pick') as HTMLElement;
   userWon.classList.remove('winner');
   cpuWon.classList.remove('winner');
 };
 
-const referee = (user, cpu) => {
+//setting winner conditions
+const referee = (user: string, cpu: string) => {
   if (user == 'paper' && cpu == 'scissors') {
     decider('YOU LOSE');
     setScore(scores - 1);
@@ -99,47 +108,49 @@ const referee = (user, cpu) => {
     userWinner();
   }
 };
-const decider = (decide) => {
-  let decision = document.querySelector('.who-won');
+
+//decider div
+const decider = (decide: string) => {
+  let decision = document.querySelector('.who-won') as HTMLElement;
   decision.innerText = decide;
   console.log(decide);
 };
 
-const setScore = (score) => {
+const setScore = (score: any) => {
   scores = score;
-  const scoreBoard = document.querySelector('.score-div h1');
+  const scoreBoard = document.querySelector('.score-div h1') as HTMLElement;
   scoreBoard.innerText = score;
   console.log(scoreBoard);
 };
 
 const resetGame = () => {
-  let hand = document.querySelector('.pick');
+  let hand = document.querySelector('.pick') as HTMLElement;
   hand.style.display = 'flex';
-  let match = document.querySelector('.match');
+  let match = document.querySelector('.match') as HTMLElement;
   match.style.display = 'none';
   tie();
 };
 
 const rulesHandler = () => {
   console.log('iwork');
-  const modalBg = document.querySelector('.modal-bg');
-  const modal = document.querySelector('.modal');
+  const modalBg = document.querySelector('.modal-bg') as HTMLElement;
+  const modal = document.querySelector('.modal') as HTMLElement;
   modalBg.style.display = 'block';
   modal.style.display = 'block';
 };
 
 const closeModalHandler = () => {
-  const modalBg = document.querySelector('.modal-bg');
-  const modal = document.querySelector('.modal');
+  const modalBg = document.querySelector('.modal-bg') as HTMLElement;
+  const modal = document.querySelector('.modal') as HTMLElement;
   modalBg.style.display = 'none';
   modal.style.display = 'none';
 };
 
-const newGame = document.querySelector('.new-game');
+const newGame = document.querySelector('.new-game') as HTMLElement;
 newGame.addEventListener('click', resetGame);
 
-const rules = document.querySelector('.rules-btn');
+const rules = document.querySelector('.rules-btn') as HTMLElement;
 rules.addEventListener('click', rulesHandler);
 
-const close = document.querySelector('.close');
-close.addEventListener('click', closeModalHandler);
+const closer = document.querySelector('.close') as HTMLElement;
+closer.addEventListener('click', closeModalHandler);

@@ -69,7 +69,7 @@
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 45px;
-    background-image: url('./triangle.svg');
+    background-image: url('../styles/images/bg-triangle.svg');
     background-repeat: no-repeat;
     background-position: center;
   }
@@ -334,7 +334,7 @@
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 105px;
-    background-image: url('./triangle.svg');
+    background-image: url('../styles/images/bg-triangle.svg');
     background-repeat: no-repeat;
     background-position: center;
     margin-top: 60px;

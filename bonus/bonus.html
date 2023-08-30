@@ -14,17 +14,17 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="./images/favicon-32x32.png"
+      href="./bonus-styles/images/favicon-32x32.png"
     />
-    <link rel="stylesheet" href="./bonus.css" />
-    <script src="./bonus.js" defer></script>
+    <link rel="stylesheet" href="../bonus/bonus-styles/bonus.css" />
+    <script src="../assets/scripts/bonus.js" defer></script>
 
     <title>Frontend Mentor | Rock, Paper, Scissors</title>
   </head>
   <body>
     <main>
       <div class="rps">
-        <img src="/images/logo-bonus.svg" alt="" />
+        <img src="./bonus-styles/images/logo-bonus.svg" alt="" />
         <div class="score-div">
           <p>SCORE</p>
           <h1>0</h1>
@@ -35,37 +35,37 @@
       <div class="pick">
         <div class="hand paper">
           <img
-            src="/images/paper.png"
+            src="./bonus-styles/images/paper.png"
             alt="paper-icon"
-            onclick="pickUserHandler('paper')"
+            onclick="userHandler('paper')"
           />
         </div>
         <div class="hand scissors">
           <img
-            src="/images/scissors.png"
+            src="./bonus-styles/images/scissors.png"
             alt="scissors-icon"
-            onclick="pickUserHandler('scissors')"
+            onclick="userHandler('scissors')"
           />
         </div>
         <div class="hand rock">
           <img
-            src="/images/rock.png"
+            src="./bonus-styles/images/rock.png"
             alt="rock-icon"
-            onclick="pickUserHandler('rock')"
+            onclick="userHandler('rock')"
           />
         </div>
         <div id="sp" class="hand spock">
           <img
-            src="/images/spock.png"
+            src="./bonus-styles/images/spock.png"
             alt="spock-icon"
-            onclick="pickUserHandler('spock')"
+            onclick="userHandler('spock')"
           />
         </div>
         <div class="hand lizard">
           <img
-            src="/images/lizard.png"
+            src="./bonus-styles/images/lizard.png"
             alt="lizard-icon"
-            onclick="pickUserHandler('lizard')"
+            onclick="userHandler('lizard')"
           />
         </div>
       </div>
@@ -73,7 +73,7 @@
         <div class="user-pick">
           <h1>YOU PICKED</h1>
           <div class="u-img-pod">
-            <img id="u-pick" src="/images/paper.png" />
+            <img id="u-pick" src="" />
           </div>
         </div>
         <div class="referee">
@@ -85,19 +85,21 @@
         <div class="cpu-pick">
           <h1>THE HOUSE PICKED</h1>
           <div class="cpu-img-pod">
-            <img id="cpu-pick" src="/images/scissors.png" />
+            <img id="cpu-pick" src="" />
           </div>
         </div>
       </div>
     </main>
     <button class="rules-btn">RULES</button>
-    <a href="/"><button class="bonus-btn">REGULAR</button></a>
+    <a href="../index.html"><button class="bonus-btn">REGULAR</button></a>
     <div class="modal-bg"></div>
     <div class="modal">
-      <span class="close"><img src="/images/icon-close.svg" /></span>
+      <span class="close"
+        ><img src="./bonus-styles/images/icon-close.svg"
+      /></span>
       <div class="title">RULES</div>
       <div class="content">
-        <img src="./image-rules-bonus.svg" alt="" />
+        <img src="./bonus-styles/images/image-rules-bonus.svg" alt="" />
       </div>
     </div>
   </body>

@@ -69,7 +69,7 @@
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 45px;
-    background-image: url('/images/bg-pentagon.svg');
+    background-image: url('./images/bg-pentagon.svg');
     background-repeat: no-repeat;
     background-position: center;
     position: relative;
@@ -280,7 +280,7 @@
   }
 
   .modal .content {
-    margin-top: 30px;
+    margin-top: 10px;
     text-align: center;
   }
   #u-pick {
@@ -358,7 +358,7 @@
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 105px;
-    background-image: url('/images/bg-pentagon.svg');
+    background-image: url('./images/bg-pentagon.svg');
     background-repeat: no-repeat;
     background-position: center;
     margin-top: 80px;

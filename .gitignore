@@ -14,3 +14,19 @@
 # Avoid your project being littered with annoying .DS_Store files!
 .DS_Store
 style-guide.md
+
+node_modules
+package-lock.json
+*.env
+*.log
+*exe
+*.log
+*.swp
+*.swo
+*.bak
+*.obj
+*.obj
+*.a
+*.lib
+*.so
+*dylib

@@ -14,17 +14,17 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="./images/favicon-32x32.png"
+      href="assets/styles/images/favicon-32x32.png"
     />
     <link rel="stylesheet" href="./assets/styles/styles.css" />
-    <script src="./assets/scripts/apps.js" defer></script>
+    <script src="assets/scripts/app.js" defer></script>
 
     <title>Frontend Mentor | Rock, Paper, Scissors</title>
   </head>
   <body>
     <main>
       <div class="rps">
-        <img src="./images/logo.svg" alt="" />
+        <img src="assets/styles/images/logo.svg" alt="" />
         <div class="score-div">
           <p>SCORE</p>
           <h1>0</h1>
@@ -33,21 +33,21 @@
       <div class="pick">
         <div class="hand paper">
           <img
-            src="./images/paper.png"
+            src="assets/styles/images/paper.png"
             alt="paper-icon"
             onclick="pickUserHandler('paper')"
           />
         </div>
         <div class="hand scissors">
           <img
-            src="./images/scissors.png"
+            src="assets/styles/images/scissors.png"
             alt="scissors-icon"
             onclick="pickUserHandler('scissors')"
           />
         </div>
         <div class="hand rock">
           <img
-            src="./images/rock.png"
+            src="assets/styles/images/rock.png"
             alt="rock-icon"
             onclick="pickUserHandler('rock')"
           />
@@ -57,7 +57,7 @@
         <div class="user-pick">
           <h1>YOU PICKED</h1>
           <div class="u-img-pod">
-            <img id="u-pick" src="./images/paper.png" />
+            <img id="u-pick" src="" />
           </div>
         </div>
         <div class="referee">
@@ -69,7 +69,7 @@
         <div class="cpu-pick">
           <h1>THE HOUSE PICKED</h1>
           <div class="cpu-img-pod">
-            <img id="cpu-pick" src="./images/scissors.png" />
+            <img id="cpu-pick" src="" />
           </div>
         </div>
       </div>
@@ -78,10 +78,12 @@
     <a href="./bonus/bonus.html"><button class="bonus-btn">BONUS</button></a>
     <div class="modal-bg"></div>
     <div class="modal">
-      <span class="close"><img src="./images/icon-close.svg" /></span>
+      <span class="close"
+        ><img src="assets/styles/images/icon-close.svg"
+      /></span>
       <div class="title">RULES</div>
       <div class="content">
-        <img src="./images/image-rules.svg" alt="" />
+        <img src="assets/styles/images/image-rules.svg" alt="" />
       </div>
     </div>
   </body>
